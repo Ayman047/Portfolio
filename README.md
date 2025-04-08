@@ -26,10 +26,3 @@ You can view the live website here:
 - CSS
 - JavaScript
 
-## 📦 Getting Started
-
-To run this project locally:
-
-1. **Clone the repo**
-   ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
