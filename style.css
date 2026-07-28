@@ -1,432 +1,1067 @@
-/* GENERAL */
+/* =========================================================
+   PORTFOLIO 98 — retro Windows 95/98 desktop theme
+   ========================================================= */
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=VT323&display=swap");
+
+:root {
+  /* --- classic 16-bit desktop palette --- */
+  --face: #c0c0c0;         /* button / panel face */
+  --face-light: #dcdcdc;
+  --highlight: #ffffff;    /* raised bevel light edge */
+  --shadow: #808080;       /* raised bevel dark edge (inner) */
+  --shadow-dark: #000000;  /* raised bevel dark edge (outer) */
+  --desktop-teal: #008080;
+  --titlebar-start: #000080;
+  --titlebar-end: #1084d0;
+  --titlebar-inactive-start: #7b7b7b;
+  --titlebar-inactive-end: #a4a4a4;
+  --text-ink: #000000;
+  --link-blue: #0000ee;
+  --link-visited: #551a8b;
+  --selected-bg: #000080;
+  --selected-fg: #ffffff;
+
+  --font-pixel: "Silkscreen", "Press Start 2P", monospace;
+  --font-ui: "Tahoma", "Segoe UI", Geneva, Verdana, sans-serif;
+  --font-mono: "VT323", "Courier New", monospace;
+}
 
 * {
   margin: 0;
   padding: 0;
-}
-
-body {
-  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
+body {
+  font-family: var(--font-ui);
+  color: var(--text-ink);
+  background: var(--desktop-teal);
+  background-image:
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 8px);
+  cursor: default;
+  overflow-x: hidden;
+}
+
 p {
-  color: rgb(85, 85, 85);
-}
-
-/* TRANSITION */
-
-a,
-.btn {
-  transition: all 300ms ease;
-}
-
-/* DESKTOP NAV */
-
-nav,
-.nav-links {
-  display: flex;
-}
-
-nav {
-  justify-content: space-around;
-  align-items: center;
-  height: 17vh;
-}
-
-.nav-links {
-  gap: 2rem;
-  list-style: none;
-  font-size: 1.5rem;
+  color: var(--text-ink);
 }
 
 a {
-  color: black;
-  text-decoration: none;
-  text-decoration-color: white;
+  color: var(--link-blue);
 }
 
 a:hover {
-  color: grey;
   text-decoration: underline;
-  text-underline-offset: 1rem;
-  text-decoration-color: rgb(181, 181, 181);
 }
 
-.logo {
-  font-size: 2rem;
+/* =========================================================
+   BEVEL SYSTEM — the one visual rule reused everywhere.
+   "raised" = pokes toward the user (buttons, windows, icons)
+   "sunken" = pressed in (status bars, meters, text fields)
+   ========================================================= */
+
+.raised,
+.win-window,
+.btn,
+.win-titlebar-btn,
+.taskbar-apps .task-btn,
+#start-btn,
+.desktop-icon .di-glyph {
+  background: var(--face);
+  border-top: 2px solid var(--highlight);
+  border-left: 2px solid var(--highlight);
+  border-right: 2px solid var(--shadow-dark);
+  border-bottom: 2px solid var(--shadow-dark);
+  box-shadow: inset -1px -1px 0 var(--shadow), inset 1px 1px 0 var(--face-light);
 }
 
-.logo:hover {
+.sunken,
+.win-statusbar,
+.skill-meter,
+.notepad-text,
+.contact-info-upper-container,
+.explorer-path {
+  background: var(--face);
+  border-top: 2px solid var(--shadow-dark);
+  border-left: 2px solid var(--shadow-dark);
+  border-right: 2px solid var(--highlight);
+  border-bottom: 2px solid var(--highlight);
+  box-shadow: inset -1px -1px 0 var(--face-light), inset 1px 1px 0 var(--shadow);
+}
+
+/* pressed state — used on click for buttons */
+.btn:active,
+.win-titlebar-btn:active,
+.task-btn:active,
+#start-btn:active,
+.task-btn.active {
+  border-top: 2px solid var(--shadow-dark);
+  border-left: 2px solid var(--shadow-dark);
+  border-right: 2px solid var(--highlight);
+  border-bottom: 2px solid var(--highlight);
+  box-shadow: inset -1px -1px 0 var(--face-light), inset 1px 1px 0 var(--shadow);
+  padding-top: 1px;
+  padding-left: 1px;
+}
+
+/* =========================================================
+   BOOT SCREEN — the one orchestrated animation moment
+   ========================================================= */
+
+#boot-screen {
+  position: fixed;
+  inset: 0;
+  background: #000000;
+  color: #c0c0c0;
+  font-family: var(--font-mono);
+  font-size: 1.3rem;
+  z-index: 9999;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: boot-fade 0.6s ease-out 2.6s forwards;
+}
+
+#boot-screen.boot-hide {
+  pointer-events: none;
+}
+
+.boot-text p {
+  color: #c0c0c0;
+  margin-bottom: 0.6rem;
+  opacity: 0;
+  animation: boot-line 0.2s ease-out forwards;
+}
+.boot-text p:nth-child(1) { animation-delay: 0.1s; }
+.boot-text p:nth-child(2) { animation-delay: 0.5s; }
+.boot-text p:nth-child(3) { animation-delay: 0.9s; }
+.boot-text p:nth-child(4) { animation-delay: 1.3s; }
+.boot-text p:nth-child(5) { animation-delay: 1.7s; }
+#boot-start { animation-delay: 2.1s; }
+
+.boot-bar {
+  margin-top: 1.5rem;
+  width: 300px;
+  max-width: 80vw;
+  height: 18px;
+  background: #000;
+  border: 1px solid #c0c0c0;
+  opacity: 0;
+  animation: boot-line 0.2s ease-out 2.1s forwards;
+}
+.boot-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: #c0c0c0;
+  animation: boot-progress 1.9s ease-in-out 0.4s forwards;
+}
+
+@keyframes boot-line {
+  to { opacity: 1; }
+}
+@keyframes boot-progress {
+  to { width: 100%; }
+}
+@keyframes boot-fade {
+  to { opacity: 0; visibility: hidden; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #boot-screen { display: none; }
+  .boot-text p, .boot-bar { opacity: 1; }
+}
+
+/* =========================================================
+   DESKTOP
+   ========================================================= */
+
+#desktop {
+  min-height: 100vh;
+  padding: 1.5rem 1.5rem 4.5rem; /* bottom padding clears fixed taskbar */
+}
+
+.desktop-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 90px;
+  margin-bottom: 1rem;
+}
+
+.desktop-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  text-decoration: none;
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.desktop-icon .di-glyph {
+  width: 44px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.desktop-icon span {
+  font-family: var(--font-pixel);
+  font-size: 0.6rem;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.desktop-icon:hover span,
+.desktop-icon:focus span {
+  background: var(--selected-bg);
+  color: var(--selected-fg);
+  text-shadow: none;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* =========================================================
+   WINDOW CHROME — the signature element, reused on every
+   section so the whole site reads as one consistent "OS".
+   ========================================================= */
+
+.win-window {
+  padding: 3px;
+  scroll-margin-top: 1.5rem;
+}
+
+.win-window:focus-within .win-titlebar,
+.win-window.win-active .win-titlebar {
+  background: linear-gradient(90deg, var(--titlebar-start), var(--titlebar-end));
+}
+
+.win-titlebar {
+  background: linear-gradient(90deg, var(--titlebar-inactive-start), var(--titlebar-inactive-end));
+  color: #fff;
+  font-family: var(--font-pixel);
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.35rem 0.4rem;
   cursor: default;
 }
 
-/* HAMBURGER MENU */
-
-#hamburger-nav {
-  display: none;
-}
-
-.hamburger-menu {
-  position: relative;
-  display: inline-block;
-}
-
-.hamburger-icon {
+.win-title {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 24px;
-  width: 30px;
+  align-items: center;
+  gap: 0.4rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.win-title-icon {
+  font-family: var(--font-ui);
+}
+
+.win-controls {
+  display: flex;
+  gap: 3px;
+}
+
+.win-controls button {
+  width: 20px;
+  height: 18px;
+  background: var(--face);
+  border-top: 1px solid var(--highlight);
+  border-left: 1px solid var(--highlight);
+  border-right: 1px solid var(--shadow-dark);
+  border-bottom: 1px solid var(--shadow-dark);
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
   cursor: pointer;
 }
 
-.hamburger-icon span {
-  width: 100%;
-  height: 2px;
-  background-color: black;
-  transition: all 0.3 ease-in-out;
+.win-controls button:active {
+  border-top: 1px solid var(--shadow-dark);
+  border-left: 1px solid var(--shadow-dark);
+  border-right: 1px solid var(--highlight);
+  border-bottom: 1px solid var(--highlight);
 }
 
-.menu-links {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: white;
-  width: fit-content;
-  max-height: 0;
-  overflow: hidden;
-  transition: all 0.3 ease-in-out;
-}
-
-.menu-links a {
-  display: block;
-  padding: 10px;
-  text-align: center;
-  font-size: 1.5rem;
-  color: black;
-  text-decoration: none;
-  transition: all 0.3 ease-in-out;
-}
-
-.menu-links li {
-  list-style: none;
-}
-
-.menu-links.open {
-  max-height: 300px;
-}
-
-.hamburger-icon.open span:first-child {
-  transform: rotate(45deg) translate(10px, 5px);
-}
-
-.hamburger-icon.open span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger-icon.open span:last-child {
-  transform: rotate(-45deg) translate(10px, -5px);
-}
-
-.hamburger-icon span:first-child {
-  transform: none;
-}
-
-.hamburger-icon span:first-child {
-  opacity: 1;
-}
-
-.hamburger-icon span:first-child {
-  transform: none;
-}
-
-/* SECTIONS */
-
-section {
-  padding-top: 4vh;
-  height: 96vh;
-  margin: 0 10rem;
-  box-sizing: border-box;
-  min-height: fit-content;
-}
-
-.section-container {
+.win-menubar {
+  background: var(--face);
   display: flex;
+  gap: 1.1rem;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--shadow);
 }
 
-/* PROFILE SECTION */
+.win-menubar span:hover {
+  background: var(--selected-bg);
+  color: var(--selected-fg);
+  padding: 0 2px;
+}
 
-#profile {
+.win-body {
+  background: var(--face);
+  padding: 1.5rem;
+}
+
+.win-statusbar {
+  background: var(--face);
+  display: flex;
+  justify-content: space-between;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.8rem;
+  margin: 0.35rem;
+}
+
+.win-statusbar-right {
+  color: var(--shadow);
+}
+
+.win-tabs {
+  display: flex;
+  gap: 2px;
+  margin-bottom: -1px;
+}
+
+.win-tab {
+  background: var(--face);
+  border-top: 2px solid var(--highlight);
+  border-left: 2px solid var(--highlight);
+  border-right: 2px solid var(--shadow-dark);
+  padding: 0.35rem 0.9rem;
+  font-size: 0.8rem;
+  position: relative;
+  top: 1px;
+}
+
+.win-tab.active {
+  border-bottom: 2px solid var(--face);
+  z-index: 1;
+  font-weight: 700;
+}
+
+/* =========================================================
+   PROFILE SECTION
+   ========================================================= */
+
+.win-body--profile {
   display: flex;
   justify-content: center;
-  gap: 5rem;
-  height: 80vh;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  padding: 2.5rem;
 }
 
+/* Windows 98 style photo frame */
 .section__pic-container {
+  width: 220px;
+  height: 220px;
+  padding: 6px;
+
+  background: #c0c0c0;
+
+  /* Raised outer border */
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #404040;
+  border-bottom: 2px solid #404040;
+
+  /* Inner bevel */
+  box-shadow:
+    inset 1px 1px 0 #dfdfdf,
+    inset -1px -1px 0 #808080;
+
   display: flex;
-  height: 400px;
-  width: 400px;
-  margin: auto 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.section__pic-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  /* Remove circle */
+  border-radius: 0;
+
+  /* Windows 98 sunken border */
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+
+  image-rendering: auto;
+}
+
+/* Optional filename under picture */
+.profile-caption {
+  margin-top: 6px;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: #000;
 }
 
 .section__text {
-  align-self: center;
   text-align: center;
-}
-
-.section__text p {
-  font-weight: 600;
+  max-width: 420px;
 }
 
 .section__text__p1 {
-  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  color: var(--shadow);
 }
 
 .section__text__p2 {
-  font-size: 1.75rem;
+  font-size: 1.15rem;
+  font-weight: 600;
   margin-bottom: 1rem;
 }
 
 .title {
-  font-size: 3rem;
-  text-align: center;
+  font-family: var(--font-pixel);
+  font-size: 1.6rem;
+  line-height: 1.6;
+  margin: 0.6rem 0;
 }
 
 #socials-container {
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: 1.2rem;
   gap: 1rem;
 }
-
-/* ICONS */
 
 .icon {
   cursor: pointer;
-  height: 2rem;
+  height: 1.8rem;
+  image-rendering: pixelated;
 }
-
-/* BUTTONS */
+/* =========================================================
+   BUTTONS
+   ========================================================= */
 
 .btn-container {
   display: flex;
   justify-content: center;
   gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
 }
 
 .btn {
+  font-family: var(--font-ui);
   font-weight: 600;
-  transition: all 300ms ease;
-  padding: 1rem;
-  width: 8rem;
-  border-radius: 2rem;
-}
-
-.btn-color-1,
-.btn-color-2 {
-  border: rgb(53, 53, 53) 0.1rem solid;
-}
-
-.btn-color-1:hover,
-.btn-color-2:hover {
+  font-size: 0.85rem;
+  padding: 0.6rem 1.1rem;
   cursor: pointer;
+  color: var(--text-ink);
 }
 
-.btn-color-1,
-.btn-color-2:hover {
-  background: rgb(53, 53, 53);
-  color: white;
+.btn:disabled {
+  color: var(--shadow);
+  cursor: not-allowed;
 }
 
-.btn-color-1:hover {
-  background: rgb(0, 0, 0);
+/* =========================================================
+   ABOUT SECTION
+========================================================= */
+
+.section-container{
+    display:flex;
+    gap:2.5rem;
+    flex-wrap:wrap;
 }
 
-.btn-color-2 {
-  background: none;
+/* Picture */
+
+.about-pic-frame{
+    width:220px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 
-.btn-color-2:hover {
-  border: rgb(255, 255, 255) 0.1rem solid;
+.about-pic{
+
+    width:200px;
+    height:200px;
+
+    object-fit:cover;
+
+    background:#c0c0c0;
+
+    padding:5px;
+
+    border-top:2px solid #ffffff;
+    border-left:2px solid #ffffff;
+    border-right:2px solid #808080;
+    border-bottom:2px solid #808080;
 }
 
-.btn-container {
-  gap: 1rem;
+.profile-caption{
+
+    margin-top:10px;
+
+    font-size:12px;
+
+    font-family:var(--font-mono);
+
+    color:#444;
 }
 
-/* ABOUT SECTION */
+/* Right */
 
-#about {
-  position: relative;
+.about-details-container{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:1rem;
 }
 
-.about-containers {
-  gap: 2rem;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
+.about-containers{
+
+    display:flex;
+
+    gap:1rem;
+
+    flex-wrap:wrap;
 }
 
-.about-details-container {
-  justify-content: center;
-  flex-direction: column;
+.details-container{
+
+    flex:1;
+
+    min-width:180px;
+
+    padding:1rem;
+
+    text-align:center;
 }
 
-.about-containers,
-.about-details-container {
-  display: flex;
+.details-container h3{
+
+    margin:.5rem 0;
+
+    font-size:.95rem;
 }
 
-.about-pic {
-  border-radius: 2rem;
+.details-container p{
+
+    font-size:.82rem;
+
+    color:var(--green);
 }
 
-.arrow {
-  position: absolute;
-  right: -5rem;
-  bottom: 2.5rem;
+/* ==========================
+      NOTEPAD
+========================== */
+
+.notepad-text{
+
+    background:#ffffff;
+
+    color:#000;
+
+    border-top:2px solid #808080;
+    border-left:2px solid #808080;
+    border-right:2px solid #ffffff;
+    border-bottom:2px solid #ffffff;
+
+    padding:18px;
+
+    font-family:"Courier New",monospace;
+
+    font-size:17px;
+
+    line-height:2;
+
+    white-space:pre-wrap;
+
+    overflow-y:auto;
+
+    max-height:350px;
+
+    box-sizing:border-box;
 }
 
-.details-container {
-  padding: 1.5rem;
-  flex: 1;
-  background: white;
-  border-radius: 2rem;
-  border: rgb(53, 53, 53) 0.1rem solid;
-  border-color: rgb(163, 163, 163);
-  text-align: center;
+.line{
+
+    display:inline-block;
+
+    width:36px;
+
+    color:#999;
+
+    font-size:14px;
+
+    user-select:none;
 }
 
-.section-container {
-  gap: 4rem;
-  height: 80%;
+/* Scrollbar */
+
+.notepad-text::-webkit-scrollbar{
+
+    width:16px;
 }
 
-.section__pic-container {
-  height: 400px;
-  width: 400px;
-  margin: auto 0;
+.notepad-text::-webkit-scrollbar-track{
+
+    background:#c0c0c0;
 }
 
-/* EXPERIENCE SECTION */
+.notepad-text::-webkit-scrollbar-thumb{
 
-#experience {
-  position: relative;
+    background:#808080;
+
+    border:2px solid #c0c0c0;
 }
+/* =========================================================
+   EXPERIENCE SECTION — skills rendered as system properties
+   ========================================================= */
 
-.experience-sub-title {
-  color: rgb(85, 85, 85);
-  font-weight: 600;
-  font-size: 1.75rem;
-  margin-bottom: 2rem;
-}
-
-.experience-details-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+.skills-panel {
+  text-align: left;
 }
 
 .article-container {
   display: flex;
-  text-align: initial;
-  flex-wrap: wrap;
-  flex-direction: row;
-  gap: 2.5rem;
-  justify-content: space-around;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 0.8rem;
 }
 
-article {
+.skill-row-top {
   display: flex;
-  width: 10rem;
-  justify-content: space-around;
-  gap: 0.5rem;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.3rem;
 }
 
-article .icon {
-  cursor: default;
+.skill-row-top h3 {
+  font-size: 0.85rem;
 }
 
-/* PROJECTS SECTION */
+.skill-tag {
+  font-size: 0.7rem;
+  color: var(--shadow);
+}
 
-#projects {
+.skill-meter {
+  height: 14px;
+  padding: 2px;
+}
+
+.skill-meter-fill {
+  height: 100%;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--titlebar-start) 0 8px,
+    transparent 8px 10px
+  );
+}
+
+.skill-row[data-level="1"] .skill-meter-fill { width: 33%; }
+.skill-row[data-level="2"] .skill-meter-fill { width: 56%; }
+.skill-row[data-level="3"] .skill-meter-fill { width: 100%; }
+
+/* =========================================================
+   PROJECTS SECTION
+========================================================= */
+
+.explorer-path{
+    padding:.45rem .75rem;
+    margin-bottom:1rem;
+
+    font-family:var(--font-mono);
+    font-size:1rem;
+}
+
+.explorer-path-value{
+    font-weight:bold;
+}
+
+.experience-details-container{
+    display:flex;
+    flex-direction:column;
+}
+
+.project-card{
+    min-width:220px;
+    display:flex;
+    flex-direction:column;
+}
+
+.project-img{
+    width:100%;
+    height:420px;
+
+    object-fit:cover;
+
+    border:2px solid var(--shadow-dark);
+
+    image-rendering:pixelated;
+}
+
+/* ---------------- Info Card ---------------- */
+
+.project-info{
+
+    margin:.9rem 0 1rem;
+
+    padding:.8rem;
+
+    background:#efefef;
+
+    border-top:2px solid #ffffff;
+    border-left:2px solid #ffffff;
+    border-right:2px solid #808080;
+    border-bottom:2px solid #808080;
+
+    min-height:120px;
+}
+
+.project-name{
+
+    font-weight:bold;
+
+    font-size:.95rem;
+
+    margin-bottom:.35rem;
+
+    color:#000;
+}
+
+.project-meta{
+
+    display:inline-block;
+
+    padding:2px 6px;
+
+    margin-bottom:.55rem;
+
+    background:#000080;
+
+    color:#fff;
+
+    font-size:.68rem;
+
+    letter-spacing:.3px;
+}
+
+.project-info p{
+
+    margin:0;
+
+    color:#444;
+
+    font-size:.82rem;
+
+    line-height:1.45;
+}
+.project-title{
+    margin: .85rem 0 1rem;
+
+    text-align: center;
+
+    font-size: .92rem;
+    font-weight: 600;
+
+    color: #003399;
+
+    letter-spacing: .3px;
+}
+/* ---------------- Buttons ---------------- */
+
+.project-btn{
+    width:100%;
+}
+
+.projects-footer{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:1.5rem;
+}
+
+/* =========================================================
+   CONTACT SECTION
+   ========================================================= */
+
+.win-body--contact{
+    max-width:420px;
+    margin:1.5rem auto;
+    padding:1.2rem;
+    text-align:center;
+}
+
+.wizard-icon{
+    margin-bottom:.75rem;
+}
+
+.wizard-icon img{
+    width:56px;
+    image-rendering:pixelated;
+}
+
+.wizard-title{
+    font-size:1.05rem;
+    margin-bottom:.35rem;
+}
+
+.wizard-lead{
+    font-size:.82rem;
+    line-height:1.45;
+    margin-bottom:1.2rem;
+}
+
+.contact-info-upper-container{
+    display:flex;
+    flex-direction:column;
+    gap:.75rem;
+}
+
+.contact-info-container{
+    display:flex;
+    align-items:center;
+    gap:.75rem;
+
+    padding:.65rem .8rem;
+
+    background:#ffffff;
+
+    border-top:2px solid #808080;
+    border-left:2px solid #808080;
+    border-right:2px solid #ffffff;
+    border-bottom:2px solid #ffffff;
+
+    text-align:left;
+}
+
+.contact-info-container .icon{
+    width:22px;
+    height:22px;
+    image-rendering:pixelated;
+    flex-shrink:0;
+}
+
+.contact-label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:2px;
+    font-size:.75rem;
+}
+
+.contact-info-container p{
+    margin:0;
+    font-size:.78rem;
+    line-height:1.3;
+}
+
+.contact-info-container a{
+    color:#0000cc;
+    text-decoration:none;
+}
+
+.contact-info-container a:hover{
+    text-decoration:underline;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer{
+    text-align:center;
+    padding:1rem 0 .5rem;
+}
+
+footer p{
+    color:#fff;
+    font-family:var(--font-mono);
+    font-size:.9rem;
+    text-shadow:1px 1px 1px #000;
+}
+/* =========================================================
+   TASKBAR
+   ========================================================= */
+
+#taskbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 42px;
+  background: var(--face);
+  border-top: 2px solid var(--highlight);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 0.4rem;
+  z-index: 500;
+}
+
+.start-wrap {
   position: relative;
 }
 
-.color-container {
-  border-color: rgb(163, 163, 163);
-  background: rgb(250, 250, 250);
-}
-
-.project-img {
-  border-radius: 2rem;
-  width: 90%;
-  height: 90%;
-}
-
-.project-title {
-  margin: 1rem;
-  color: black;
-}
-
-.project-btn {
-  color: black;
-  border-color: rgb(163, 163, 163);
-}
-
-/* CONTACT */
-
-#contact {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  height: 70vh;
-}
-
-.contact-info-upper-container {
-  display: flex;
-  justify-content: center;
-  border-radius: 2rem;
-  border: rgb(53, 53, 53) 0.1rem solid;
-  border-color: rgb(163, 163, 163);
-  background: (250, 250, 250);
-  margin: 2rem auto;
-  padding: 0.5rem;
-}
-
-.contact-info-container {
+#start-btn {
   display: flex;
   align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.7rem;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.start-flag {
+  font-size: 0.9rem;
+}
+
+.start-menu {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 4px;
+  min-width: 210px;
+  background: var(--face);
+  border-top: 2px solid var(--highlight);
+  border-left: 2px solid var(--highlight);
+  border-right: 2px solid var(--shadow-dark);
+  border-bottom: 2px solid var(--shadow-dark);
+  display: none;
+  overflow: hidden;
+}
+
+.start-menu.open {
+  display: flex;
+}
+
+.start-menu-side {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  background: linear-gradient(180deg, var(--titlebar-start), var(--titlebar-end));
+  color: #fff;
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+  display: flex;
+  align-items: flex-end;
   justify-content: center;
-  gap: 0.5rem;
-  margin: 1rem;
+  padding: 0.6rem 0.3rem;
+  letter-spacing: 1px;
 }
 
-.contact-info-container p {
-  font-size: larger;
+.start-menu ul {
+  list-style: none;
+  flex: 1;
+  padding: 0.3rem;
 }
 
-.contact-icon {
-  cursor: default;
+.start-menu li a {
+  display: block;
+  padding: 0.45rem 0.6rem;
+  font-size: 0.85rem;
+  color: var(--text-ink);
+  text-decoration: none;
 }
 
-.email-icon {
-  height: 2.5rem;
+.start-menu li a:hover {
+  background: var(--selected-bg);
+  color: var(--selected-fg);
 }
 
-/* FOOTER SECTION */
-
-footer {
-  height: 26vh;
-  margin: 0 1rem;
+.start-menu-divider {
+  height: 2px;
+  margin: 0.3rem 0.2rem;
+  border-top: 1px solid var(--shadow);
+  border-bottom: 1px solid var(--highlight);
 }
 
-footer p {
-  text-align: center;
+.taskbar-apps {
+  display: flex;
+  gap: 0.4rem;
+  flex: 1;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.taskbar-apps::-webkit-scrollbar { display: none; }
+
+.task-btn {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  padding: 0.4rem 0.7rem;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.taskbar-tray {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.3rem 0.7rem;
+  background: var(--face);
+  border-top: 1px solid var(--shadow-dark);
+  border-left: 1px solid var(--shadow-dark);
+  border-right: 1px solid var(--highlight);
+  border-bottom: 1px solid var(--highlight);
+}
+
+.taskbar-clock {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+}
+
+/* =========================================================
+   RETRO SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+::-webkit-scrollbar-track {
+  background: var(--face);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--face);
+  border-top: 2px solid var(--highlight);
+  border-left: 2px solid var(--highlight);
+  border-right: 2px solid var(--shadow-dark);
+  border-bottom: 2px solid var(--shadow-dark);
+}
+
+/* focus visibility, kept simple and high-contrast */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px dotted #000;
+  outline-offset: 2px;
 }

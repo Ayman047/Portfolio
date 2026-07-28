@@ -4,338 +4,563 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Portfolio</title>
+    <title>AYMAN_MOHAMMED.EXE</title>
+     <!-- Favicon -->
+    <link rel="icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaqueries.css" />
+  </head>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="mediaqueries.css" />
   </head>
   <body>
-    <nav id="desktop-nav">
-      <div class="logo">Ayman Mohammed</div>
-      <div>
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+    <!-- BOOT SCREEN -->
+    <div id="boot-screen">
+      <div class="boot-text">
+        <p>PORTFOLIO-OS (C) 1998 AYMAN MOHAMMED CORP.</p>
+        <p>640K CONVENTIONAL MEMORY OK</p>
+        <p>DETECTING DATA SCIENCE SKILLS......... OK</p>
+        <p>LOADING RESUME.EXE.................... OK</p>
+        <p>MOUNTING PROJECTS (C:\)............... OK</p>
+        <p id="boot-start">Starting Portfolio 98...</p>
+        <div class="boot-bar"><div class="boot-bar-fill" id="boot-bar-fill"></div></div>
       </div>
-    </nav>
-    <nav id="hamburger-nav">
-      <div class="logo">Ayman Mohammed</div>
-      <div class="hamburger-menu">
-        <div class="hamburger-icon" onclick="toggleMenu()">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div class="menu-links">
-          <li><a href="#about" onclick="toggleMenu()">About</a></li>
-          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-        </div>
+    </div>
+
+    <!-- DESKTOP -->
+    <div id="desktop">
+      <div class="desktop-icons">
+        <a class="desktop-icon" href="#about">
+          <div class="di-glyph">📄</div>
+          <span>About.txt</span>
+        </a>
+        <a class="desktop-icon" href="#experience">
+          <div class="di-glyph">📊</div>
+          <span>Skills.sys</span>
+        </a>
+        <a class="desktop-icon" href="#projects">
+          <div class="di-glyph">💾</div>
+          <span>Projects</span>
+        </a>
+        <a class="desktop-icon" href="#contact">
+          <div class="di-glyph">✉️</div>
+          <span>Contact.msg</span>
+        </a>
       </div>
-    </nav>
-    <section id="profile">
-      <div class="section__pic-container">
-        <img src="./assets2/cropped_image.png" alt="John Doe profile picture" />
-      </div>
-      <div class="section__text">
-        <p class="section__text__p1">Hello, I'm</p>
-        <h1 class="title">Ayman Mohammed</h1>
-        <p class="section__text__p2">Data Science undergrad</p>
-        <div class="btn-container">
-          <button
-            class="btn btn-color-2"
-            onclick="window.open('./assets2/RESUME.pdf')"
-          >
-            Resume
-          </button>
-          <button class="btn btn-color-1" onclick="location.href='./#contact'">
-            Contact Info
-          </button>
-        </div>
-        <div id="socials-container">
-          <img
-            src="./assets/linkedin.png"
-            alt="My LinkedIn profile"
-            class="icon"
-            onclick="location.href='https://www.linkedin.com/in/ayman-mohammed-b54881216/'"
-          />
-          <img
-            src="./assets/github.png"
-            alt="My Github profile"
-            class="icon"
-            onclick="location.href='https://github.com/Ayman047'"
-          />
-        </div>
-      </div>
-    </section>
-    <section id="about">
-      <p class="section__text__p1">Get To Know More</p>
-      <h1 class="title">About Me</h1>
-      <div class="section-container">
-        <div class="section__pic-container">
-          <img
-            src="./assets2/profile-pic2.png"
-            alt="Profile picture"
-            class="about-pic"
-          />
-        </div>
-        <div class="about-details-container">
-          <div class="about-containers">
-            <div class="details-container">
-              <img
-                src="./assets/experience.png"
-                alt="Experience icon"
-                class="icon"
-              />
-              <h3>Experience</h3>
-              <p>  <br />SalesForce Developer intern</p>
-            </div>
-            <div class="details-container">
-              <img
-                src="./assets/education.png"
-                alt="Education icon"
-                class="icon"
-              />
-              <h3>Education</h3>
-              <p>B.Tech in Computer Science <br />Data Science Specialization</p>
+
+      <main>
+        <!-- PROFILE WINDOW -->
+        <section id="profile" class="win-window" data-app="profile">
+          <div class="win-titlebar">
+            <span class="win-title"><span class="win-title-icon">🖥️</span> AYMAN_MOHAMMED.EXE</span>
+            <div class="win-controls">
+              <button type="button" aria-label="Minimize">_</button>
+              <button type="button" aria-label="Maximize">▢</button>
+              <button type="button" aria-label="Close">✕</button>
             </div>
           </div>
-          <div class="text-container">
+          <div class="win-menubar">
+            <span>File</span><span>Edit</span><span>View</span><span>Help</span>
+          </div>
+          <div class="win-body win-body--profile">
+            <div class="section__pic-container">
+              <img src="./assets/cropped_image.png" alt="Ayman Mohammed profile picture" />
+            </div>
+            <div class="section__text">
+              <p class="section__text__p1">&gt; RUNNING GREETING.BAT</p>
+              <h1 class="title">Ayman Mohammed</h1>
+              <p class="section__text__p2">Computer Science & Data Science Graduate </p>
+              <div class="btn-container">
+                <button
+                  class="btn btn-3d"
+                  onclick="window.open('./assets/RESUME.pdf')"
+                >
+                  📄 Open Resume
+                </button>
+                <button class="btn btn-3d" onclick="location.href='./#contact'">
+                  ✉️ Contact Info
+                </button>
+              </div>
+              <div id="socials-container">
+                <img
+                  src="./assets/linkedin.png"
+                  alt="My LinkedIn profile"
+                  class="icon"
+                  onclick="location.href='https://www.linkedin.com/in/ayman-mohammed-b54881216/'"
+                />
+                <img
+                  src="./assets/github.png"
+                  alt="My Github profile"
+                  class="icon"
+                  onclick="location.href='https://github.com/Ayman047'"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="win-statusbar"><span>Ready</span><span class="win-statusbar-right">100% loaded</span></div>
+        </section>
+
+<!-- ABOUT WINDOW (Notepad style) -->
+<section id="about" class="win-window" data-app="about">
+
+  <div class="win-titlebar">
+    <span class="win-title">
+      <span class="win-title-icon">📝</span>
+      README.TXT - Notepad
+    </span>
+
+    <div class="win-controls">
+      <button type="button">_</button>
+      <button type="button">▢</button>
+      <button type="button">✕</button>
+    </div>
+  </div>
+
+  <div class="win-menubar">
+    <span>File</span>
+    <span>Edit</span>
+    <span>Search</span>
+    <span>Help</span>
+  </div>
+
+  <div class="win-body">
+
+    <div class="section-container">
+
+      <!-- Picture -->
+
+      <div class="section__pic-container about-pic-frame">
+
+        <img
+          src="./assets/profile-pic3.png"
+          alt="Profile Picture"
+          class="about-pic"
+        >
+      </div>
+
+      <!-- Right Side -->
+
+      <div class="about-details-container">
+
+        <div class="about-containers">
+
+          <div class="details-container">
+            <img src="./assets/experience.png" class="icon">
+
+            <h3>Current Status</h3>
+
             <p>
-              I’m a passionate data science enthusiast eager to explore and learn new concepts every day. I hold a B.Tech in Computer Science with a specialization in Data Science. I enjoy preprocessing datasets, uncovering insights through statistical analysis, and transforming raw data into meaningful information. I have a growing interest in building interactive dashboards — while I haven’t built many yet, I’m excited to refine this skill further.
-
-In addition to data science, I’m equally driven to deepen my understanding of artificial intelligence (AI) and machine learning (ML). I’m proficient in Python and SQL and can confidently work with libraries such as Pandas, NumPy, and Matplotlib. I’ve also experimented with building full-stack applications, though I’m not a pro yet — I’m continually learning and improving in this area.
-
-I’m enthusiastic about applying these skills in real-world projects and exploring how data-driven solutions can create an impact.
+              Open to Work<br>
+              Data Science • AI
             </p>
+
           </div>
-        </div>
-      </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#experience'"
-      />
-    </section>
-    <section id="experience">
-      <p class="section__text__p1">Explore My</p>
-      <h1 class="title">Experience</h1>
-      <div class="experience-details-container">
-        <div class="about-containers">
+
           <div class="details-container">
-            <h2 class="experience-sub-title">Data Science</h2>
-            <div class="article-container">
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Python</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>SQL</h3>
-                  <p>Intermediate</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Dashboards</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Tableau</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
+            <img src="./assets/education.png" class="icon">
+
+            <h3>Education</h3>
+
+            <p>
+              B.Tech Computer Science<br>
+              Data Science Specialization
+            </p>
+
+          </div>
+
+        </div>
+
+        <!-- Notepad -->
+
+        <div class="notepad-text">
+
+<span class="line">01</span> README.TXT
+<span class="line">02</span>
+<span class="line">03</span> Hello,
+<span class="line">04</span>
+<span class="line">05</span> I'm Ayman Mohammed, a Computer Science graduate
+<span class="line">06</span> specializing in Data Science with interests in
+<span class="line">07</span> Artificial Intelligence, Machine Learning and
+<span class="line">08</span> Software Development.
+<span class="line">09</span>
+<span class="line">10</span> Technologies:
+<span class="line">11</span> • Python • SQL
+<span class="line">12</span> • Pandas • NumPy • Scikit-learn
+<span class="line">13</span> • Tableau • Power BI
+<span class="line">14</span> • OpenCV • Flask • React
+<span class="line">15</span>
+<span class="line">16</span> Projects:
+<span class="line">17</span> • Blink to Text (Capstone)
+<span class="line">18</span> • Netflix Dashboard
+<span class="line">19</span> • Tripadvisor Dashboard
+<span class="line">20</span> • Starz Dental Web Application
+<span class="line">21</span>
+<span class="line">22</span> Currently seeking opportunities to build
+<span class="line">23</span> impactful AI and data-driven applications.
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="win-statusbar">
+    <span>Ln 23, Col 42</span>
+    <span class="win-statusbar-right">UTF-8</span>
+  </div>
+
+</section>
+
+        <!-- EXPERIENCE WINDOW (System Properties style) -->
+        <section id="experience" class="win-window" data-app="experience">
+          <div class="win-titlebar">
+            <span class="win-title"><span class="win-title-icon">⚙️</span> SKILLS.SYS - Properties</span>
+            <div class="win-controls">
+              <button type="button" aria-label="Minimize">_</button>
+              <button type="button" aria-label="Maximize">▢</button>
+              <button type="button" aria-label="Close">✕</button>
             </div>
           </div>
-          <div class="details-container">
-            <h2 class="experience-sub-title">Full-stack Development</h2>
-            <div class="article-container">
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>MongoDB</h3>
-                  <p>Basic</p>
+          <div class="win-menubar">
+            <span>File</span><span>View</span><span>Options</span><span>Help</span>
+          </div>
+          <div class="win-body">
+            <div class="win-tabs">
+              <span class="win-tab active">General</span>
+              <span class="win-tab">Performance</span>
+              <span class="win-tab">Device Manager</span>
+            </div>
+            <div class="experience-details-container">
+              <div class="about-containers">
+                <div class="details-container skills-panel">
+                  <h2 class="experience-sub-title">📁 Data Science</h2>
+                  <div class="article-container">
+                    <article class="skill-row" data-level="2">
+                      <div class="skill-row-top"><h3>Python</h3><span class="skill-tag">Advanced Beginner</span></div>
+                      <div class="skill-meter"><div class="skill-meter-fill"></div></div>
+                    </article>
+                    <article class="skill-row" data-level="2">
+                      <div class="skill-row-top"><h3>SQL</h3><span class="skill-tag">Advanced Beginner</span></div>
+                      <div class="skill-meter"><div class="skill-meter-fill"></div></div>
+                    </article>
+                    <article class="skill-row" data-level="1">
+                      <div class="skill-row-top"><h3>Dashboards</h3><span class="skill-tag">Basic</span></div>
+                      <div class="skill-meter"><div class="skill-meter-fill"></div></div>
+                    </article>
+                    <article class="skill-row" data-level="1">
+                      <div class="skill-row-top"><h3>Tableau</h3><span class="skill-tag">Basic</span></div>
+                      <div class="skill-meter"><div class="skill-meter-fill"></div></div>
+                    </article>
+                  </div>
                 </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Express JS</h3>
-                  <p>Basic</p>
+                <div class="details-container skills-panel">
+                  <h2 class="experience-sub-title">📁 Software Development</h2>
+                  <div class="article-container">
+                    <article class="skill-row" data-level="1">
+                      <div class="skill-row-top"><h3>React</h3><span class="skill-tag">Basic</span></div>
+                      <div class="skill-meter"><div class="skill-meter-fill"></div></div>
+                    </article>
+                    <article class="skill-row" data-level="1">
+                      <div class="skill-row-top"><h3>Flask</h3><span class="skill-tag">Basic</span></div>
+                      <div class="skill-meter"><div class="skill-meter-fill"></div></div>
+                    </article>
+                    <article class="skill-row" data-level="1">
+                      <div class="skill-row-top"><h3>Supabase</h3><span class="skill-tag">Basic</span></div>
+                      <div class="skill-meter"><div class="skill-meter-fill"></div></div>
+                    </article>
+                    <article class="skill-row" data-level="1">
+                      <div class="skill-row-top"><h3>Node JS</h3><span class="skill-tag">Basic</span></div>
+                      <div class="skill-meter"><div class="skill-meter-fill"></div></div>
+                    </article>
+                  </div>
                 </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>React</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
-              <article>
-                <img
-                  src="./assets/checkmark.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Node JS</h3>
-                  <p>Basic</p>
-                </div>
-              </article>
+              </div>
             </div>
           </div>
+          <div class="win-statusbar"><span>8 devices found</span><span class="win-statusbar-right">No conflicts</span></div>
+        </section>
+
+<!-- PROJECTS WINDOW (My Computer / Explorer style) -->
+<section id="projects" class="win-window" data-app="projects">
+  <div class="win-titlebar">
+    <span class="win-title">
+      <span class="win-title-icon">💾</span>
+      PROJECTS.exe - Explorer
+    </span>
+
+    <div class="win-controls">
+      <button type="button" aria-label="Minimize">_</button>
+      <button type="button" aria-label="Maximize">▢</button>
+      <button type="button" aria-label="Close">✕</button>
+    </div>
+  </div>
+
+  <div class="win-menubar">
+    <span>File</span>
+    <span>Edit</span>
+    <span>View</span>
+    <span>Help</span>
+  </div>
+
+  <div class="win-body">
+
+    <div class="explorer-path">
+      Address:
+      <span class="explorer-path-value">
+        C:\Ayman\Projects
+      </span>
+    </div>
+
+    <div class="experience-details-container">
+
+      <div class="about-containers">
+
+        <!-- Project 1 -->
+
+        <div class="details-container color-container project-card">
+
+          <div class="article-container">
+            <img
+              src="./assets/project-1.png"
+              alt="Tableau Dashboards"
+              class="project-img"
+            >
+          </div>
+          <h3 class="project-title">Visual Data Analytics</h3>
+
+          <div class="btn-container">
+            <button
+              class="btn btn-3d project-btn"
+              onclick="window.open('https://github.com/Ayman047/Tableau-Projects','_blank')"
+            >
+              View Source
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Project 2 -->
+
+        <div class="details-container color-container project-card">
+
+          <div class="article-container">
+            <img
+              src="./assets/project - 2.png"
+              alt="Starz Dental"
+              class="project-img"
+            >
+          </div>
+          <h3 class="project-title">Full-Stack Web Application</h3>
+          <div class="btn-container">
+            <button
+              class="btn btn-3d project-btn"
+              onclick="window.open('https://github.com/Ayman047/Starz-Dental','_blank')"
+            >
+              View Source
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Project 3 -->
+
+        <div class="details-container color-container project-card">
+
+          <div class="article-container">
+            <img
+              src="./assets/project-3.png"
+              alt="Blink To Text"
+              class="project-img"
+            >
+          </div>
+          <h3 class="project-title">Computer Vision • OpenCV</h3>
+          <div class="btn-container">
+            <button
+              class="btn btn-3d project-btn"
+              onclick="window.open('https://github.com/Ayman047/Capstone','_blank')"
+            >
+              View Source
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- View More -->
+
+      <div class="projects-footer">
+        <button
+          class="btn btn-3d"
+          onclick="window.open('https://github.com/Ayman047','_blank')"
+        >
+          📂 View More Projects
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="win-statusbar">
+    <span>3 object(s)</span>
+    <span class="win-statusbar-right">
+      GitHub Repository
+    </span>
+  </div>
+
+</section>
+
+<!-- CONTACT WINDOW (Setup Wizard style) -->
+<section id="contact" class="win-window" data-app="contact">
+
+  <div class="win-titlebar">
+    <span class="win-title">
+      <span class="win-title-icon">✉️</span>
+      CONTACT.EXE - Setup Wizard
+    </span>
+
+    <div class="win-controls">
+      <button type="button" aria-label="Minimize">_</button>
+      <button type="button" aria-label="Maximize">▢</button>
+      <button type="button" aria-label="Close">✕</button>
+    </div>
+  </div>
+
+  <div class="win-menubar">
+    <span>File</span>
+    <span>Edit</span>
+    <span>View</span>
+    <span>Help</span>
+  </div>
+
+  <div class="win-body win-body--contact">
+
+    <div class="wizard-icon">
+      <img src="./assets/email.png" alt="Contact">
+    </div>
+
+    <h2 class="wizard-title">Setup Complete!</h2>
+
+    <p class="wizard-lead">
+      Thank you for visiting my portfolio.<br>
+      Choose one of the options below to get in touch.
+    </p>
+
+    <div class="contact-info-upper-container">
+
+      <!-- Email -->
+      <div class="contact-info-container">
+        <img
+          src="./assets/email.png"
+          alt="Email"
+          class="icon contact-icon email-icon"
+        />
+
+        <div>
+          <span class="contact-label">Email</span>
+          <p>
+            <a href="mailto:aymanshahayman@gmail.com">
+              aymanshahayman@gmail.com
+            </a>
+          </p>
         </div>
       </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#projects'"
-      />
-    </section>
-    <section id="projects">
-      <p class="section__text__p1">Browse My Recent</p>
-      <h1 class="title">Projects</h1>
-      <div class="experience-details-container">
-        <div class="about-containers">
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-1.png"
-                alt="Project 1"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">Tableau Dashboards</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/Ayman047/Tableau-Projects'"
-              >
-                Github
-              </button>
-            </div>
-          </div>
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-2.png"
-                alt="Project 2"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">Project Two</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Github
-              </button>
-            </div>
-          </div>
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-3.png"
-                alt="Project 3"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">Capstone Projects (Major & Mini)</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Github
-              </button>
-            </div>
-          </div>
+
+      <!-- LinkedIn -->
+      <div class="contact-info-container">
+        <img
+          src="./assets/linkedin.png"
+          alt="LinkedIn"
+          class="icon contact-icon"
+        />
+
+        <div>
+          <span class="contact-label">LinkedIn</span>
+          <p>
+            <a
+              href="https://www.linkedin.com/in/ayman-mohammed-b54881216/"
+              target="_blank"
+            >
+              Connect with me
+            </a>
+          </p>
         </div>
       </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#contact'"
-      />
-    </section>
-    <section id="contact">
-      <p class="section__text__p1">Get in Touch</p>
-      <h1 class="title">Contact Me</h1>
-      <div class="contact-info-upper-container">
-        <div class="contact-info-container">
-          <img
-            src="./assets/email.png"
-            alt="Email icon"
-            class="icon contact-icon email-icon"
-          />
-          <p><a href="mailto:examplemail@gmail.com">aymanshah2002@gmail.com</a></p>
-        </div>
-        <div class="contact-info-container">
-          <img
-            src="./assets/linkedin.png"
-            alt="LinkedIn icon"
-            class="icon contact-icon"
-          />
-          <p><a href="https://www.linkedin.com/in/ayman-mohammed-b54881216/">LinkedIn</a></p>
+
+      <!-- GitHub -->
+      <div class="contact-info-container">
+        <img
+          src="./assets/github.png"
+          alt="GitHub"
+          class="icon contact-icon"
+        />
+
+        <div>
+          <span class="contact-label">GitHub</span>
+          <p>
+            <a
+              href="https://github.com/Ayman047"
+              target="_blank"
+            >
+              View my repositories
+            </a>
+          </p>
         </div>
       </div>
-    </section>
-    <footer>
-      <nav>
-        <div class="nav-links-container">
-          <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
+
+    </div>
+
+  </div>
+
+  <div class="win-statusbar">
+    <span>Step 1 of 1</span>
+    <span class="win-statusbar-right">Ready</span>
+  </div>
+
+</section>
+
+</main>
+
+      <footer>
+        <p>© 2026 Ayman Mohammed. All Rights Reserved. — Portfolio 98 Edition</p>
+      </footer>
+    </div>
+
+    <!-- TASKBAR -->
+    <div id="taskbar">
+      <div class="start-wrap">
+        <button id="start-btn" aria-expanded="false">
+          <span class="start-flag">🪟</span> Start
+        </button>
+        <div class="start-menu" id="start-menu">
+          <div class="start-menu-side">Portfolio&nbsp;98</div>
+          <ul>
+            <li><a href="#profile">🖥️ Profile</a></li>
+            <li><a href="#about">📝 About.txt</a></li>
+            <li><a href="#experience">⚙️ Skills.sys</a></li>
+            <li><a href="#projects">💾 Projects</a></li>
+            <li><a href="#contact">✉️ Contact.exe</a></li>
+            <li class="start-menu-divider" role="separator"></li>
+            <li><a href="./assets/RESUME.pdf" target="_blank">📄 Resume.pdf</a></li>
           </ul>
         </div>
-      </nav>
-      <p>Copyright &#169; 2025 Ayman Mohammed. All Rights Reserved.</p>
-    </footer>
+      </div>
+      <div class="taskbar-apps" id="taskbar-apps">
+        <button class="task-btn" data-target="profile">🖥️ Profile</button>
+        <button class="task-btn" data-target="about">📝 About</button>
+        <button class="task-btn" data-target="experience">⚙️ Skills</button>
+        <button class="task-btn" data-target="projects">💾 Projects</button>
+        <button class="task-btn" data-target="contact">✉️ Contact</button>
+      </div>
+      <div class="taskbar-tray">
+        <span class="tray-icon">🔊</span>
+        <span class="taskbar-clock" id="clock">12:00 PM</span>
+      </div>
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>
