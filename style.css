@@ -584,43 +584,55 @@ main {
 
 .notepad-text{
 
-    background:#ffffff;
-
+    background:#fff;
     color:#000;
 
     border-top:2px solid #808080;
     border-left:2px solid #808080;
-    border-right:2px solid #ffffff;
-    border-bottom:2px solid #ffffff;
+    border-right:2px solid #fff;
+    border-bottom:2px solid #fff;
 
     padding:18px;
 
     font-family:"Courier New",monospace;
-
     font-size:17px;
+    line-height:1.8;
 
-    line-height:2;
-
-    white-space:pre-wrap;
-
+    max-height:360px;
     overflow-y:auto;
-
-    max-height:350px;
 
     box-sizing:border-box;
 }
 
+.note-row{
+
+    display:grid;
+    grid-template-columns:42px 1fr;
+    column-gap:12px;
+
+    align-items:flex-start;
+
+    min-height:30px;
+}
+
 .line{
 
-    display:inline-block;
-
-    width:36px;
-
     color:#999;
-
+    user-select:none;
     font-size:14px;
 
-    user-select:none;
+    text-align:right;
+}
+
+.note-content{
+
+    white-space:pre-wrap;
+    word-break:break-word;
+}
+
+.note-content strong{
+
+    font-weight:bold;
 }
 
 /* Scrollbar */
